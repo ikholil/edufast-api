@@ -1,14 +1,19 @@
+import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import express, { Application, NextFunction, Request, Response } from 'express';
 import httpStatus from 'http-status';
 import globalErrorHandler from './app/middlewares/globalErrorHandler';
 import routes from './app/routes';
 
-import cookieParser from 'cookie-parser';
-
 const app: Application = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: ['http://localhost:3000', 'http://localhost:3001'],
+    credentials: true,
+  }),
+);
+
 app.use(cookieParser());
 
 //parser
@@ -17,13 +22,14 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/v1', routes);
 
-// health check
-app.get('/', (req: Request, res: Response) => {
-  res.status(httpStatus.OK).send({
-    success: true,
-    message: 'Hello from Edufast API Server. Server is up and running',
+app.get('/test', async (req: Request, res: Response) => {
+  res.status(200).json({
+    message: 'Server working....!',
   });
 });
+
+// Schedule to run every minute
+
 
 //global error handler
 app.use(globalErrorHandler);

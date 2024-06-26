@@ -1,3 +1,12 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+enum ENUM_USER_ROLE {
+  SUPER_ADMIN
+  ADMIN
+  INSTRUCTOR
+  STUDENT
+}
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -8,15 +17,13 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  id        String          @id @default(uuid()) @map("_id")
   name      String
-  email     String   @unique
+  email     String          @unique
   password  String
-  role      String   @default("student")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
+  role      ENUM_USER_ROLE? @default(STUDENT)
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
 
   @@map("users")
 }
-
-// profile fields -> bio, birthdate, gender, age

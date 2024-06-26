@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "D:\\Projects\\edufast-api\\logs\\winston\\successes\\.708a95c682661fb506f06330c7ad11a297729171-audit.json",
+    "files": [
+        {
+            "date": 1719370060945,
+            "name": "D:\\Projects\\edufast-api\\logs\\winston\\successes\\phu-2024-26-06-08-success.log",
+            "hash": "fc8cdd0b50276b341e2365fe104f68f4914d41cea2d6d46fa913807a4e496560"
+        }
+    ],
+    "hashType": "sha256"
+}
